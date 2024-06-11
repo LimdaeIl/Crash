@@ -29,12 +29,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        // TODO: JWT 인증 로직 작성하기
         String BEARER_PREFIX = "Bearer ";
         var authorization = request.getHeader(HttpHeaders.AUTHORIZATION);
         var securityContext = SecurityContextHolder.getContext();
 
-        // 인증 정보가 없는 경우
         if (!ObjectUtils.isEmpty(authorization)
                 && authorization.startsWith(BEARER_PREFIX)
                 && securityContext.getAuthentication() == null) {

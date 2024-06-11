@@ -1,4 +1,4 @@
-package com.crash.crash.exception.user;
+package com.crash.crash.exception.account;
 
 import com.crash.crash.exception.ClientErrorException;
 import org.springframework.http.HttpStatus;

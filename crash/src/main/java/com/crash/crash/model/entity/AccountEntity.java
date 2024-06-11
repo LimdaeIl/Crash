@@ -1,6 +1,6 @@
 package com.crash.crash.model.entity;
 
-import com.crash.crash.model.user.Role;
+import com.crash.crash.model.account.Role;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -80,16 +80,15 @@ public class AccountEntity implements UserDetails {
         return UserDetails.super.isEnabled();
     }
 
-    private AccountEntity(String username, String password, String name, String email, Role role) {
+    private AccountEntity(String username, String password, String name, String email) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
-        this.role = role;
     }
 
-    public static AccountEntity of(String username, String password, String name, String email, Role role) {
-        return new AccountEntity(username, password, name, email, role);
+    public static AccountEntity of(String username, String password, String name, String email) {
+        return new AccountEntity(username, password, name, email);
     }
 
     @Override

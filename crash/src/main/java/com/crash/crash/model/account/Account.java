@@ -1,4 +1,4 @@
-package com.crash.crash.model.user;
+package com.crash.crash.model.account;
 
 import com.crash.crash.model.entity.AccountEntity;
 
