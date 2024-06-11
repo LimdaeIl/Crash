@@ -15,15 +15,16 @@ import java.util.Objects;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@Table(
-        name = "\"user\""
-)
+@Table(name = "account",
+        indexes = {
+                @Index(name = "account_username_idx", columnList = "username", unique = true)
+        })
 @Entity
-public class UserEntity implements UserDetails {
+public class AccountEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
     @Column(nullable = false, length = 16)
     private String username;
@@ -79,7 +80,7 @@ public class UserEntity implements UserDetails {
         return UserDetails.super.isEnabled();
     }
 
-    private UserEntity(String username, String password, String name, String email, Role role) {
+    private AccountEntity(String username, String password, String name, String email, Role role) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -87,16 +88,16 @@ public class UserEntity implements UserDetails {
         this.role = role;
     }
 
-    public static UserEntity of(String username, String password, String name, String email, Role role) {
-        return new UserEntity(username, password, name, email, role);
+    public static AccountEntity of(String username, String password, String name, String email, Role role) {
+        return new AccountEntity(username, password, name, email, role);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserEntity that = (UserEntity) o;
-        return Objects.equals(userId, that.userId)
+        AccountEntity that = (AccountEntity) o;
+        return Objects.equals(id, that.id)
                 && Objects.equals(username, that.username)
                 && Objects.equals(password, that.password)
                 && Objects.equals(name, that.name)
@@ -107,7 +108,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId,
+        return Objects.hash(id,
                 username,
                 password,
                 name,
