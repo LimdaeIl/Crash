@@ -1,0 +1,21 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/demo
+    username: sa
+    password: sa
+
+jwt:
+  secret-key: X2NyYXNoX3NlcnZpY2Vfc3VwZXJfc2VjcmV0X2tleV8=
+
+redis:
+  host: localhost
+  port: 6379
